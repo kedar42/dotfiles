@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DOTFILES=$0
+DOTFILES=$(dirname $(readlink -f $0))
 # todo make more modular not hardcoded, remove . before files in dotfiles
 
 sudo rm -rf ~/.bashrc
