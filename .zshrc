@@ -14,7 +14,6 @@ compinit
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 autoload -U promptinit; promptinit
-prompt pure
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -24,4 +23,4 @@ alias ls='exa -l --color=always --group-directories-first'
 alias ll='exa -la --color=always --group-directories-first'
 alias vim='nvim'
 
-eval $(thefuck --alias)
+eval "$(starship init zsh)"
