@@ -13,3 +13,4 @@ ln -s $DOTFILES/.config/kitty/kitty.conf $HOME/.config/kitty/kitty.conf
 ln -s $DOTFILES/.config/kitty/current-theme.conf $HOME/.config/kitty/current-theme.conf
 mkdir $HOME/.config/nvim 
 ln -s $DOTFILES/.config/nvim/init.lua $HOME/.config/nvim/init.lua
+ln -fs $DOTFILES/.zshrc $HOME/.zshrc
