@@ -39,10 +39,12 @@ alias l='ls -lav --ignore=.?*'   # show long listing but no hidden dotfiles exce
 
 [[ -z "$FUNCNEST" ]] && export FUNCNEST=100          # limits recursive functions, see 'man bash'
 
+
+# todo fix bind keys that are broken due to links
 ## Use the up and down arrow keys for finding a command in history
 ## (you can write some initial letters of the command first).
-bind '"\e[A":history-search-backward'
-bind '"\e[B":history-search-forward'
+# bind '"\e[A":history-search-backward'
+# bind '"\e[B":history-search-forward'
 
 ################################################################################
 ## Some generally useful functions.
