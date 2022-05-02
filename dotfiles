@@ -1,0 +1,39 @@
+#!/bin/bash
+shopt -s dotglob
+DOTFILES="$(dirname "$(readlink -f "$0")")/config"
+
+handleFile() {
+    for item in "$DOTFILES"/"$1"/*; do
+    if [ "$1" == "$item" ]; then
+        continue
+    fi
+
+    filename=$(basename "$item")
+    
+    if [ -d "$item" ]; then
+        [ ! -d "$HOME""$1"/"$filename" ] && mkdir "$HOME""$1"/"$filename"
+        handleFile "$1"/"$filename" "$2"
+    else
+        # add warns
+        if [ "$2" == "link" ]; then
+            ln -sf "$DOTFILES""$1"/"$filename" "$HOME""$1"/"$filename"
+        else
+            cp -f "$DOTFILES""$1"/"$filename" "$HOME""$1"/"$filename"
+        fi
+    fi
+done
+}
+
+case "${1}" in
+    "link")
+        handleFile "" "link"
+    ;;
+    "install")
+        handleFile "" "install"
+    ;;
+    "help") printf "link - creates links \ninstall - copies files\n"
+    ;;
+    *)
+        echo "Invalid input, use help"
+    ;;
+esac
