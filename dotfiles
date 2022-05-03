@@ -24,6 +24,16 @@ handleFile() {
 done
 }
 
+add() {
+    if [ "$1" == "" ]; then
+       exit 1
+    fi
+    DOTSOURCE="$PWD/$1"
+    DOTTARGET="$DOTFILES"/"$(echo "$DOTSOURCE" | cut -d'/' -f4-)"
+    mkdir -p "$(dirname "$DOTTARGET")"; mv "$DOTSOURCE" "$DOTTARGET"
+    ln -sf "$DOTTARGET" "$DOTSOURCE"
+}
+
 case "${1}" in
     "link")
         handleFile "" "link"
@@ -32,6 +42,9 @@ case "${1}" in
         handleFile "" "install"
     ;;
     "help") printf "link - creates links \ninstall - copies files\n"
+    ;;
+    "add")
+        add "$2"
     ;;
     *)
         echo "Invalid input, use help"
