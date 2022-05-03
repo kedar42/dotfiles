@@ -26,6 +26,6 @@ alias ls='exa -l --color=always --group-directories-first'
 alias ll='exa -la --color=always --group-directories-first'
 alias vim='nvim'
 alias doom='~/.emacs.d/bin/doom'
-alias dotfiles='~/Documents/dotfiles/install.sh'
+alias dotfiles='~/Documents/dotfiles/dotfiles'
 
 eval "$(starship init zsh)"
