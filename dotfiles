@@ -4,34 +4,58 @@ DOTFILES="$(dirname "$(readlink -f "$0")")/config"
 
 handleFile() {
     for item in "$DOTFILES/$1"/*; do
-    if [ "$1" == "$item" ]; then
-        continue
-    fi
-
-    filename=$(basename "$item")
-    
-    if [ -d "$item" ]; then
-        [ ! -d "$HOME$1/$filename" ] && mkdir "$HOME$1/$filename"
-        handleFile "$1/$filename" "$2"
-    else
-        # add warns
-        if [ "$2" == "link" ]; then
-            ln -sf "$DOTFILES$1/$filename" "$HOME$1/$filename"
-        else
-            cp -f "$DOTFILES$1/$filename" "$HOME$1/$filename"
+        if [ "$1" == "$item" ]; then
+            continue
         fi
-    fi
-done
+
+        filename=$(basename "$item")
+    
+        if [ -d "$item" ]; then
+            [ ! -d "$HOME$1/$filename" ] && mkdir "$HOME$1/$filename"
+            handleFile "$1/$filename" "$2"
+        else
+            # add warns
+            if [ "$2" == "link" ]; then
+                ln -sf "$DOTFILES$1/$filename" "$HOME$1/$filename"
+            else
+                cp -f "$DOTFILES$1/$filename" "$HOME$1/$filename"
+            fi
+        fi
+    done
 }
 
 add() {
     if [ "$1" == "" ] || [ ! -e "$1" ]; then
        exit 1
     fi
+    
     DOTSOURCE="$PWD/$1"
     DOTTARGET="$DOTFILES"/"$(echo "$DOTSOURCE" | cut -d'/' -f4-)"
     mkdir -p "$(dirname "$DOTTARGET")"; mv "$DOTSOURCE" "$_"
     ln -sf "$DOTTARGET" "$DOTSOURCE"
+}
+
+remove() {
+    link="$(readlink "$1")"
+    directory="$(dirname "$1")"
+    mv -f "$link" "$directory"
+    # add support for removing directory if it is empty
+}
+
+list() {
+    for item in "$DOTFILES/$1"/*; do
+        if [ "$1" == "$item" ]; then
+            continue
+        fi
+
+        filename=$(basename "$item")
+    
+        if [ -d "$item" ]; then
+            list "$1/$filename"
+        else
+            echo "$filename"
+        fi
+    done
 }
 
 # todo add list functionality that lists all currently tracked dotfiles and remove that removes tracking
@@ -47,6 +71,12 @@ case "${1}" in
     ;;
     "add")
         add "$2"
+    ;;
+    "remove")
+        remove "$2"
+    ;;
+    "list")
+        list ""
     ;;
     *)
         echo "Invalid input, use help"
