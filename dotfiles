@@ -1,38 +1,45 @@
 #!/bin/bash
 shopt -s dotglob
-DOTFILES="$(dirname "$(readlink -f "$0")")/config"
+LOCATION="$HOME/Computer/dotfiles"
+DOTFILES="$LOCATION/config"
+FILE="$LOCATION/dotlist.txt"
+
+# create dotlist
+init() {
+    if [ ! -f "$FILE" ]; then
+        touch "$FILE"
+    fi
+}
 
 handleFile() {
-    for item in "$DOTFILES/$1"/*; do
-        if [ "$1" == "$item" ]; then
-            continue
-        fi
-
-        filename=$(basename "$item")
-    
-        if [ -d "$item" ]; then
-            [ ! -d "$HOME$1/$filename" ] && mkdir "$HOME$1/$filename"
-            handleFile "$1/$filename" "$2"
+    init
+    IFS=' '
+    while read -ra line; do
+        if [ "$2" == "link" ]; then
+            ln -sf "$DOTFILES/${line[0]}" "$HOME/${line[1]}"
         else
-            # add warns
-            if [ "$2" == "link" ]; then
-                ln -sf "$DOTFILES$1/$filename" "$HOME$1/$filename"
-            else
-                cp -f "$DOTFILES$1/$filename" "$HOME$1/$filename"
-            fi
+            cp -f "$DOTFILES/${line[0]}" "$HOME/${line[1]}"
         fi
-    done
+    done <"$FILE"
 }
 
 add() {
+    # not working needs fixing
     if [ "$1" == "" ] || [ ! -e "$1" ]; then
-       exit 1
+        exit 1
     fi
-    
-    DOTSOURCE="$PWD/$1"
-    DOTTARGET="$DOTFILES"/"$(echo "$DOTSOURCE" | cut -d'/' -f4-)"
-    mkdir -p "$(dirname "$DOTTARGET")"; mv "$DOTSOURCE" "$_"
-    ln -sf "$DOTTARGET" "$DOTSOURCE"
+
+    init
+    TARGET=$(basename "$1")
+    DOTSOURCE="$PWD/$TARGET"
+    DOTTARGET="$(echo "$PWD/${TARGET#.}" | cut -d'/' -f5-)"
+    if [ "$DOTTARGET" == "" ]; then
+        DOTTARGET="$TARGET"
+    fi
+    mkdir -p "$(dirname "$DOTFILES/$DOTTARGET")"
+    mv "$DOTSOURCE" "$_"
+    ln -sf "$DOTFILES/$DOTTARGET" "$DOTSOURCE"
+    echo "$DOTTARGET $(echo "$DOTSOURCE" | cut -d'/' -f4-)" >>"$FILE"
 }
 
 remove() {
@@ -43,42 +50,36 @@ remove() {
 }
 
 list() {
-    for item in "$DOTFILES/$1"/*; do
-        if [ "$1" == "$item" ]; then
-            continue
-        fi
-
-        filename=$(basename "$item")
-    
-        if [ -d "$item" ]; then
-            list "$1/$filename"
-        else
-            echo "$filename"
-        fi
-    done
+    # chesk for dotfiles in dir that are not tracked and that are present but not nexistent
+    # Missing : ...
+    # Untracked : ...
+    while read -ra line; do
+        echo "$(basename "${line[0]}")"
+    done <"$FILE"
 }
 
 # todo add list functionality that lists all currently tracked dotfiles and remove that removes tracking
 
 case "${1}" in
-    "link")
-        handleFile "" "link"
+"link")
+    handleFile "" "link"
     ;;
-    "install")
-        handleFile "" "install"
+"copy")
+    handleFile "" "copy"
     ;;
-    "help") printf "link - creates links \ninstall - copies files\n"
+"help")
+    printf "link - creates links \ncopy - copies files\n"
     ;;
-    "add")
-        add "$2"
+    #"add")
+    #    add "$2"
+    #    ;;
+    #"remove")
+    #    remove "$2"
+    #    ;;
+"list")
+    list ""
     ;;
-    "remove")
-        remove "$2"
-    ;;
-    "list")
-        list ""
-    ;;
-    *)
-        echo "Invalid input, use help"
+*)
+    echo "Invalid input, use help"
     ;;
 esac
