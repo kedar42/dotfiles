@@ -92,7 +92,7 @@ zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light zsh-users/zsh-history-substring-search
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 zinit snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh #not working
-zinit light wfxr/forgit
+# zinit light wfxr/forgit
 # zinit snippet OMZ::plugins/gitfast
 
 

@@ -1,6 +1,6 @@
-# dotfiles
+# Dotfiles
 A simple repository for my dotfiles
 
 
-todo
+## TODO
 Fix .bashrc being broken due to it being a link
