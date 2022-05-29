@@ -1,0 +1,14 @@
+#!/bin/bash
+LOCATION="$HOME/Computer/dotfiles"
+DOTFILES="$LOCATION/config"
+FILE="$LOCATION/dotlist.txt"
+
+IFS=' '
+    while read -ra line; do
+        mkdir -p "$(dirname "$HOME/${line[1]}")"
+        if [ "$2" == "link" ]; then
+            ln -sf "$DOTFILES/${line[0]}" "$HOME/${line[1]}"
+        else
+            cp -f "$DOTFILES/${line[0]}" "$HOME/${line[1]}"
+        fi
+    done <"$FILE"
