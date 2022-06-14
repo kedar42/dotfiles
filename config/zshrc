@@ -59,7 +59,7 @@ alias chown="chown -c"
 alias mkdir="mkdir -v"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[ ! -n "$DISPLAY" ] || [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh # the first part fixes the problem only partially, fix that if in tty it loads different more symple and readable theme
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -114,8 +114,5 @@ bindkey '^[[B' history-substring-search-down
 
 zle_highlight=('paste:none')
 
-# Helpfull functions
-up () {
-
-}
+#Todo Helpfull functions (up, unpack etc)
 
