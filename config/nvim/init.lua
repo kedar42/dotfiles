@@ -18,6 +18,9 @@ require('packer').startup(function(use)
     use 'tpope/vim-fugitive' -- Git commands in nvim
     use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
     use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
+    -- Looks
+    use 'glepnir/dashboard-nvim'
+
     -- Search UI and themes
     use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
@@ -55,6 +58,8 @@ vim.o.smartcase = true
 --Decrease update time
 vim.o.updatetime = 250
 vim.wo.signcolumn = 'yes'
+
+require("dash")
 
 --Set colorscheme
 vim.o.termguicolors = true
