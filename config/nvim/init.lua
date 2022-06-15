@@ -11,6 +11,8 @@ end
 
 require('packer').startup(function(use)
     -- Basic setup
+    use "wbthomason/packer.nvim"
+    use "nvim-lua/plenary.nvim"
     use 'kyazdani42/nvim-web-devicons'                     -- Icons
     use 'kyazdani42/nvim-tree.lua'                         -- File Preview
     use 'suan/vim-instant-markdown'                        -- Markdown Preview
@@ -28,6 +30,12 @@ require('packer').startup(function(use)
     use 'nvim-lualine/lualine.nvim'                        -- Bottom Line
     -- Language support
     use 'fladson/vim-kitty'                                -- Kitty config support:
+    use {
+      "folke/which-key.nvim",
+      config = function()
+        require("which-key").setup {}
+      end
+    }    
     -- Add git related info in the signs columns and popups
     use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
     use 'L3MON4D3/LuaSnip' -- Snippets plugin
