@@ -1,14 +1,13 @@
 #!/bin/bash
-LOCATION="$HOME/Computer/dotfiles"
+LOCATION="$(dirname -- $(readlink -f ${BASH_SOURCE}))"
 DOTFILES="$LOCATION/config"
 FILE="$LOCATION/dotlist.txt"
 
+echo $LOCATION
+
 IFS=' '
-    while read -ra line; do
-        mkdir -p "$(dirname "$HOME/${line[1]}")"
-        if [ "$2" == "link" ]; then
-            ln -sf "$DOTFILES/${line[0]}" "$HOME/${line[1]}"
-        else
-            cp -f "$DOTFILES/${line[0]}" "$HOME/${line[1]}"
-        fi
+    while read -r from to; do
+        echo "$from -> $to"
+        mkdir -p "$(dirname $HOME/$to)"
+        ln -sf "$DOTFILES/$from" "$HOME/$to"
     done <"$FILE"
