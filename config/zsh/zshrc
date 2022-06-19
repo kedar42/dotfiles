@@ -1,0 +1,47 @@
+source $ZDOTDIR/config.zsh
+ZGEN_DIR="$HOME/.config/zgenom"
+
+# NOTE Using zgenom because zgen is no longer maintained
+if [ ! -d "$ZGEN_DIR" ]; then
+  echo "Installing jandamm/zgenom"
+  git clone https://github.com/jandamm/zgenom "$ZGEN_DIR"
+fi
+source $ZGEN_DIR/zgenom.zsh
+
+# Check for plugin and zgenom updates every 7 days
+# This does not increase the startup time.
+zgenom autoupdate
+
+if ! zgenom saved; then
+  echo "Initializing zgenom"
+  rm -f $ZDOTDIR/*.zwc(N) \
+        $CACHE/zsh/*(N) \
+        $ZGEN_INIT.zwc
+
+  # NOTE Be extra careful about plugin load order, or subtle breakage can
+  #   emerge. This is the best order I've sussed out for these plugins.
+  zgenom load junegunn/fzf shell
+  zgenom load jeffreytse/zsh-vi-mode
+  zgenom load zdharma-continuum/fast-syntax-highlighting
+  zgenom load zsh-users/zsh-completions src
+  zgenom load Aloxaf/fzf-tab
+  zgenom load zsh-users/zsh-autosuggestions
+  zgenom load zsh-users/zsh-history-substring-search
+  zgenom load romkatv/powerlevel10k powerlevel10k
+  zgenom load hlissner/zsh-autopair autopair.zsh
+
+  zgenom save
+  zgenom compile $ZDOTDIR
+fi
+
+## Bootstrap interactive sessions
+if [[ $TERM != dumb ]]; then
+  autoload -Uz compinit && compinit -u -d $ZSH_CACHE/zcompdump
+
+  source $ZDOTDIR/keybinds.zsh
+  source $ZDOTDIR/completion.zsh
+  source $ZDOTDIR/aliases.zsh
+
+
+  autopair-init
+fi
