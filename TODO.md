@@ -4,11 +4,11 @@ Split nvim config into multiple files
 Fix markdown
 
 # ZSH
-Move from HOME to .config
-Split into multiple files
+Integrate zoxide
+Add completion to up
+Add unpack function to copy files one dir up
 
 # Antidote
-
 Add a way to autoupdate
 
 # General
