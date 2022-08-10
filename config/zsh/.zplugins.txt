@@ -6,7 +6,6 @@ olets/zsh-window-title
 
 ohmyzsh/ohmyzsh path:lib/clipboard.zsh
 ohmyzsh/ohmyzsh path:plugins/extract
-ohmyzsh/ohmyzsh path:plugins/colored-man-pages
 joshskidmore/zsh-fzf-history-search --not working
 # ohmyzsh/ohmyzsh path:plugins/command-not-found -- too slow for my liking
 zdharma-continuum/fast-syntax-highlighting kind:defer
