@@ -1,8 +1,14 @@
 # Dotfiles
 A simple repository for my dotfiles
 
-zsh config largely inspired by https://github.com/hlissner/dotfiles
+# Packages needed
 
+kitty, bat, exa, neovim
 
-## TODO
-Fix .bashrc being broken due to it being a link
+Fonts: 
+ttf-nerd-fonts-symbols, ttf-fira-code, ttf-joypixels
+
+# Credit
+
+zsh config largely inspired by https://github.com/hlissner/dotfiles and https://github.com/mattmc3/zdotdir
+
