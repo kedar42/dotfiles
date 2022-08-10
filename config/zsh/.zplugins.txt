@@ -6,7 +6,9 @@ olets/zsh-window-title
 
 ohmyzsh/ohmyzsh path:lib/clipboard.zsh
 ohmyzsh/ohmyzsh path:plugins/extract
-joshskidmore/zsh-fzf-history-search --not working
+joshskidmore/zsh-fzf-history-search
+#zgenom ohmyzsh plugins/ssh-agent -- set this up properly based on instructions
+#zgenom ohmyzsh plugins/sudo
 # ohmyzsh/ohmyzsh path:plugins/command-not-found -- too slow for my liking
 zdharma-continuum/fast-syntax-highlighting kind:defer
 laggardkernel/zsh-thefuck kind:defer
