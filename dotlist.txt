@@ -8,3 +8,4 @@ zsh/keybinds.zsh .config/zsh/keybinds.zsh
 zsh/completion.zsh .config/zsh/completion.zsh
 zsh/config.zsh .config/zsh/config.zsh
 zsh/.zplugins.txt .config/zsh/.zplugins.txt
+zsh/functions.zsh .config/zsh/functions.zsh
