@@ -3,7 +3,7 @@ A simple repository for my dotfiles
 
 # Packages needed
 
-kitty, bat, exa, neovim
+kitty, bat, exa, neovim, thefuck
 
 Fonts: 
 ttf-nerd-fonts-symbols, ttf-fira-code, ttf-joypixels

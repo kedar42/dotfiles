@@ -22,10 +22,6 @@ fancy-ctrl-z () {
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 
-if (( $+commands[fzf] )); then
-  bindkey '^R' fzf-history-widget
-fi
-
 # Omni-Completion
 if (( $+commands[fasd] )); then
   bindkey -M viins '^x^f' fasd-complete-f  # C-x C-f to do fasd-complete-f (only files)

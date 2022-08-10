@@ -6,11 +6,11 @@ olets/zsh-window-title
 
 ohmyzsh/ohmyzsh path:lib/clipboard.zsh
 ohmyzsh/ohmyzsh path:plugins/extract
-ohmyzsh/ohmyzsh path:plugins/fancy-ctrl-z
-#joshskidmore/zsh-fzf-history-search --not working
-#ohmyzsh/ohmyzsh path:plugins/command-not-found --- not working needs to be fixed
+ohmyzsh/ohmyzsh path:plugins/colored-man-pages
+joshskidmore/zsh-fzf-history-search --not working
+# ohmyzsh/ohmyzsh path:plugins/command-not-found -- too slow for my liking
 zdharma-continuum/fast-syntax-highlighting kind:defer
-laggardkernel/zsh-thefuck
+laggardkernel/zsh-thefuck kind:defer
 zsh-users/zsh-completions
 Aloxaf/fzf-tab
 zsh-users/zsh-autosuggestions
