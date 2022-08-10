@@ -7,3 +7,4 @@ zsh/aliases.zsh .config/zsh/aliases.zsh
 zsh/keybinds.zsh .config/zsh/keybinds.zsh
 zsh/completion.zsh .config/zsh/completion.zsh
 zsh/config.zsh .config/zsh/config.zsh
+zsh/.zplugins.txt .config/zsh/.zplugins.txt

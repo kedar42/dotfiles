@@ -1,0 +1,19 @@
+junegunn/fzf path:shell
+jeffreytse/zsh-vi-mode
+olets/zsh-window-title
+
+# Oh my zsh part
+
+ohmyzsh/ohmyzsh path:lib/clipboard.zsh
+ohmyzsh/ohmyzsh path:plugins/extract
+ohmyzsh/ohmyzsh path:plugins/fancy-ctrl-z
+#joshskidmore/zsh-fzf-history-search --not working
+#ohmyzsh/ohmyzsh path:plugins/command-not-found --- not working needs to be fixed
+zdharma-continuum/fast-syntax-highlighting kind:defer
+laggardkernel/zsh-thefuck
+zsh-users/zsh-completions
+Aloxaf/fzf-tab
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-history-substring-search
+romkatv/powerlevel10k
+hlissner/zsh-autopair

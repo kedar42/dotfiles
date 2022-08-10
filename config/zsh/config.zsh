@@ -22,6 +22,18 @@ if (( $+commands[fd] )); then
   export FZF_ALT_C_COMMAND="fd -t d . $HOME"
 fi
 
+#region: zsh-users/zsh-autosuggestions
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+if [[ -n "$key_info" ]]; then
+  # vi
+  bindkey -M viins "$key_info[Control]F" vi-forward-word
+  bindkey -M viins "$key_info[Control]E" vi-add-eol
+fi
+
+#region: zsh-users/zsh-history-substring-search
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=magenta,fg=white,bold'
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='bg=red,fg=white,bold'
+
 # 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export VISUAL="nvim"
