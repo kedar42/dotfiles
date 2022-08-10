@@ -10,3 +10,6 @@ Split into multiple files
 # Antidote
 
 Add a way to autoupdate
+
+# General
+Fix .bashrc being broken due to it being a link
