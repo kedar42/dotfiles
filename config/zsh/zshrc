@@ -2,6 +2,26 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# for refference and future fixing https://github.com/jandamm/zgenom/blob/main/functions/__zgenom_autoupdate
+# might break when opening more terminals at the same time, look into locking
+# todo spawn another unfocused terminal that handels the update and then closes
+function __autoupdate() {
+  now=$(command date '+%s')
+  local file=$ZDOTDIR/.updated
+  if [[ ! -f $file ]]; then
+    # We've never run, create the lastupdate-file and set now as interval.
+    printf 0 > $file
+    last_update=$now
+  else
+    last_update=$(( $now - $(< $file) - 7 * 86400 ))
+  fi
+  if [[ $last_update -ge 0 ]]; then
+    echo $now > $file
+    autoload -Uz $ZDOTDIR/.antidote/functions/antidote
+    antidote update
+  fi
+}
+
 source $ZDOTDIR/config.zsh
 
 # drive config with antidote
@@ -19,6 +39,9 @@ if [[ ! $ZDOTDIR/.zplugins.zsh -nt $ZDOTDIR/.zplugins.txt ]]; then
     antidote bundle <$ZDOTDIR/.zplugins.txt >$ZDOTDIR/.zplugins.zsh
   )
 fi
+
+__autoupdate
+
 source $ZDOTDIR/.zplugins.zsh
 
 ## Bootstrap interactive sessions
@@ -28,7 +51,6 @@ if [[ $TERM != dumb ]]; then
   source $ZDOTDIR/completion.zsh
   source $ZDOTDIR/aliases.zsh
   source $ZDOTDIR/functions.zsh
-
   autopair-init
 fi
 
