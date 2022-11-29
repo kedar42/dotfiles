@@ -3,12 +3,13 @@ Fix dashboard functionality
 Split nvim config into multiple files
 Fix markdown
 
-# ZSH
+# FISH
 Integrate zoxide
-Add completion to up
+Add fzf tab completion (like zsh with box preview)
 Add unpack function to copy files one dir up
+Autoinstall fisher and its plugins inside install script
 
-# Antidote
+# Fisher
 Add a way to autoupdate
 
 # General
