@@ -1,3 +1,4 @@
 fish/config.d/aliases.fish .config/fish/config.d/aliases.fish
 nvim/init.lua .config/nvim/init.lua
 foot/foot.ini .config/foot/foot.ini
+paru/paru.conf .config/paru/paru.conf
