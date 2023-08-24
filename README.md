@@ -2,8 +2,7 @@
 A simple repository for my dotfiles
 
 # Packages needed
+cat, bat, exa, fish
 
-foot, bat, exa, neovim
-
-Fonts: 
-ttf-nerd-fonts-symbols, ttf-fira-code, ttf-joypixels
+Fonts:
+otf-font-awesome
