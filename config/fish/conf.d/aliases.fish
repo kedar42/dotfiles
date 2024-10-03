@@ -13,10 +13,7 @@ alias reboot='sudo reboot'
 
 # pretty ls
 
-alias ls="exa --group-directories-first --git --icons";
+alias ls="eza --group-directories-first";
 alias l="ls -blaF";
 alias ll="ls -abghilmu";
-alias tree='exa --tree'
-
-alias yay="paru"
-alias vim="nvim"
+alias tree='eza --tree'
