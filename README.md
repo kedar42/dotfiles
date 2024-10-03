@@ -20,7 +20,9 @@ This started as a personal dotfiles repo, but later I came to a conclusion that 
 
 ## Dependencies
 
-fish, bat, eza
+- [fish](https://fishshell.com/)
+- [bat](https://github.com/sharkdp/bat)
+- [eza](https://github.com/eza-community/eza)
 
 ### Me relevant distros installation
 
