@@ -20,10 +20,10 @@ This started as a personal dotfiles repo, but later I came to a conclusion that 
 
 ## Dependencies
 
-- [fish](https://fishshell.com/)
+- [zsh](https://fishshell.com/)
 - [bat](https://github.com/sharkdp/bat)
 - [eza](https://github.com/eza-community/eza)
-
+- [zoxide](https://github.com/ajeetdsouza/zoxide)
 ### Me relevant distros installation
 
 #### Fedora
