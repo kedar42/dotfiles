@@ -1,4 +1,0 @@
-zsh/conf.d .config/zsh/conf.d
-zsh/.zsh_plugins.txt .config/zsh/zsh_plugins.txt
-zsh/zshenv .zshenv
-zsh/zshrc .config/zsh/.zshrc

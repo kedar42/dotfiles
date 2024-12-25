@@ -2,16 +2,16 @@
 
 ## Info
 
-This is my fish based shell configuration.
+This is my zsh based shell configuration.
 
 In short this is highly personalized "collection" of configs and tools I use daily. I wanted to have it somewhere where I can easily clone it and have my shell up and running in no time. This is not meant to be used by anyone else, but if you find something useful feel free to use it.
 
 ## Installation
 
 ```bash
-git clone https://github.com/kedar42/dotfiles.git
-cd dotfiles
-cp -r config/* ~/.config/
+git clone https://github.com/kedar42/shell.git
+cd shell
+cp -r home/* ~/
 ```
 
 ## What is this?
@@ -20,11 +20,21 @@ This started as a personal dotfiles repo, but later I came to a conclusion that 
 
 ## Dependencies
 
-- [zsh](https://fishshell.com/)
+- [zsh](https://github.com/zsh-users/zsh)
 - [bat](https://github.com/sharkdp/bat)
 - [eza](https://github.com/eza-community/eza)
 - [zoxide](https://github.com/ajeetdsouza/zoxide)
+- [fzf](https://github.com/junegunn/fzf)
+
 ### Me relevant distros installation
+
+#### MacOs
+
+you need to have Homebrew installed
+
+```bash
+brew install bat eza zoxide fzf
+```
 
 #### Fedora
 
