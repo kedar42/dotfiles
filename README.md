@@ -27,8 +27,8 @@ In short this is highly personalized "collection" of configs and tools I use.
 
 ```bash
 git clone https://github.com/kedar42/dotfiles.git
-cd shell
-cp -r home/* ~/
+cd dotfiles
+stow --dotfiles -t ~ home
 ```
 
 ### Me relevant distros installation
