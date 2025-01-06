@@ -8,3 +8,4 @@ ohmyzsh/ohmyzsh path:plugins/ssh
 zsh-users/zsh-syntax-highlighting kind:defer
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-history-substring-search
+romkatv/powerlevel10k

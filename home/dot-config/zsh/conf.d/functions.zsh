@@ -22,3 +22,4 @@ extract() {
 
 # Create a directory and cd into it
 mkcd() { mkdir -p "$@" && cd "$_"; }
+backup() { cp "$1"{,.bak}; }

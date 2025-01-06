@@ -1,3 +1,7 @@
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 ANTIDOTE_DIR="${ZDOTDIR:-$HOME}/.antidote"
 
 ## Bootstrap antidote
@@ -47,4 +51,4 @@ eval "$(zoxide init --cmd cd zsh)"
 cdmk() { mkdir -p $1 && cd $1 }
 backup() { cp "$1"{,.bak}; }
 
-eval "$(starship init zsh)"
+[[ ! -f "{ZDOTDIR:-$HOME/.p10k.zsh" ]] || source "{ZDOTDIR:-$HOME/.p10k.zsh"
