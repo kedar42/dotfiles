@@ -5,9 +5,9 @@ alias mv='mv -iv'
 alias mkdir='mkdir -pv'
 alias rmdir='rmdir -v'
 alias ln='ln -v'
-alias chmod="chmod -c"
-alias chown="chown -c"
-alias wget='wget -c'
+#alias chmod="chmod -c"
+#alias chown="chown -c"
+#alias wget='wget -c'
 
 alias shutdown='sudo shutdown'
 alias reboot='sudo reboot'
