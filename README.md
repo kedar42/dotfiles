@@ -15,6 +15,7 @@
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 - [zoxide](https://github.com/ajeetdsouza/zoxide)
 - [fzf](https://github.com/junegunn/fzf)
+- [nvim](https://neovim.io/)
 
 ## Info
 
@@ -38,13 +39,13 @@ git --reset hard
 #### MacOs
 
 ```bash
-brew install bat eza zoxide fzf ripgrep starship fd
+brew install bat eza zoxide fzf ripgrep starship fd neovim
 ```
 
 #### Fedora
 
 ```bash
-sudo dnf install zsh bat eza zoxide fzf ripgrep starship fd
+sudo dnf install zsh bat eza zoxide fzf ripgrep starship fd neovim
 ```
 
 I am also using [ghostty](https://ghostty.org/) for terminal but it config is not included here  
