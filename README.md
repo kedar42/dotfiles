@@ -5,7 +5,6 @@
 ### Shell
 
 - [zsh](https://github.com/zsh-users/zsh)
-- [starship](https://starship.rs)
 
 ### Cmd tools
 
@@ -39,13 +38,13 @@ git --reset hard
 #### MacOs
 
 ```bash
-brew install bat eza zoxide fzf ripgrep starship fd neovim
+brew install bat eza zoxide fzf ripgrep fd neovim
 ```
 
 #### Fedora
 
 ```bash
-sudo dnf install zsh bat eza zoxide fzf ripgrep starship fd neovim
+sudo dnf install zsh bat eza zoxide fzf ripgrep fd neovim
 ```
 
 I am also using [ghostty](https://ghostty.org/) for terminal but it config is not included here  
