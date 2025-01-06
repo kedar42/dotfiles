@@ -16,7 +16,6 @@
 - [zoxide](https://github.com/ajeetdsouza/zoxide)
 - [fzf](https://github.com/junegunn/fzf)
 
-
 ## Info
 
 This is my zsh based shell configuration.
@@ -25,10 +24,13 @@ In short this is highly personalized "collection" of configs and tools I use.
 
 ## Installation
 
+### !BEWARE THIS WILL REPLACE ANY FILES THAT ARE ALSO INCLUDED IN DOTFILES
+
 ```bash
 git clone https://github.com/kedar42/dotfiles.git
 cd dotfiles
-stow --dotfiles -t ~ home
+stow --dotfiles --no-folding --adopt -t ~ home
+git --reset hard
 ```
 
 ### Me relevant distros installation
@@ -45,4 +47,4 @@ brew install bat eza zoxide fzf ripgrep starship fd
 sudo dnf install zsh bat eza zoxide fzf ripgrep starship fd
 ```
 
-I am also using [ghostty](https://ghostty.org/) for terminal but it config is not included here 
+I am also using [ghostty](https://ghostty.org/) for terminal but it config is not included here  
