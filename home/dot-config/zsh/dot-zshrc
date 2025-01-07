@@ -46,9 +46,11 @@ if (( $+commands[fzf] )); then
   source <(fzf --zsh)
 fi
 
+export PATH="/opt/homebrew/opt/dotnet@8/bin:$PATH"
+
 eval "$(zoxide init --cmd cd zsh)"
 
 cdmk() { mkdir -p $1 && cd $1 }
 backup() { cp "$1"{,.bak}; }
 
-[[ ! -f "{ZDOTDIR:-$HOME/.p10k.zsh" ]] || source "{ZDOTDIR:-$HOME/.p10k.zsh"
+[[ ! -f "${ZDOTDIR:-$HOME}/.p10k.zsh" ]] || source "${ZDOTDIR:-$HOME}/.p10k.zsh"
