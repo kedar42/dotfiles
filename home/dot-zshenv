@@ -1,3 +1,6 @@
 ZDOTDIR="$HOME/.config/zsh";
 ZSH_CACHE="$HOME/.config/zsh";
 CACHE="$HOME/.cache"
+
+# bun completions
+[ -s "/Users/kedar/.bun/_bun" ] && source "/Users/kedar/.bun/_bun"
