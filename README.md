@@ -30,7 +30,7 @@ In short this is highly personalized "collection" of configs and tools I use.
 git clone https://github.com/kedar42/dotfiles.git
 cd dotfiles
 stow --dotfiles --no-folding --adopt -t ~ home
-git --reset hard
+git reset --hard
 ```
 
 ### Me relevant distros installation
