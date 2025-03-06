@@ -33,3 +33,4 @@ end
 abbr -a g git
 abbr -a gcm --set-cursor 'git commit -m "%"'
 abbr -a gcma --position command --set-cursor --function __aiva_commit
+abbr -a k kubectl
