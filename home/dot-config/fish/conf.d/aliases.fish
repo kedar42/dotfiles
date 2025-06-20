@@ -25,7 +25,12 @@ if type -q zoxide
 end
 
 if type -q bat
-    set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
+    set -x BAT_THEME "Catppuccin Mocha"
+    alias man="batman"
+end
+
+if type -q dust
+    alias du="dust"
 end
 
 # Abbreviations, advantage over aliases is that they show as full command in history
@@ -34,3 +39,16 @@ abbr -a g git
 abbr -a gcm --set-cursor 'git commit -m "%"'
 abbr -a gcma --position command --set-cursor --function __aiva_commit
 abbr -a k kubectl
+abbr -a d docker
+abbr -a dcup 'docker-compose up -d'
+
+if type -q paru
+    abbr -a p paru
+    abbr -a pi --set-cursor 'paru -S %'
+end
+
+# WARNING: I am not sure if the following aliases cover all cases, use with caution
+
+if type -q dog
+    alias dig="dog"
+end

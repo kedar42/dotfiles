@@ -3,8 +3,4 @@ font-family = FiraCode Nerd Font Mono
 keybind = global:ctrl+`=toggle_quick_terminal
 background-opacity = 0.85
 background-blur-radius = 20
-quick-terminal-autohide = false
-quick-terminal-position = right
-command = /opt/homebrew/bin/fish
-
-
+command = /bin/fish
