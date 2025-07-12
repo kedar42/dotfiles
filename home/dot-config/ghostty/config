@@ -4,3 +4,4 @@ keybind = global:ctrl+`=toggle_quick_terminal
 background-opacity = 0.85
 background-blur-radius = 20
 command = /bin/fish
+keybind = shift+enter=text:\n
