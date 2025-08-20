@@ -14,6 +14,7 @@ As mentioned, this config relies on fish shell, but I advise against setting it 
 - [nvim](https://neovim.io/): Preferred text editor, basic plugins are included in the config.
 - [ghostty](https://ghostty.org/): My choice of terminal emulator, provides a way to run fish shell in a terminal, this is probably the most opinionated choice in this config.
 - [yazi](https://github.com/sxyazi/yazi): A terminal file manager that provides a way to navigate and manage files in the terminal.
+- [paru](https://github.com/Morganamilo/paru): An AUR helper for Arch Linux, used for installing packages from the AUR. Includes abbreviations `p` and `pi` for quick package management.
 
 ### Tools used passively
 
@@ -30,6 +31,7 @@ These tools are mostly used as replacements for some of the default tools, or di
 - [stow](https://www.gnu.org/software/stow/): A symlink farm manager, used to manage dotfiles and configuration files, used in the setup process.
 - [starship](https://starship.rs/): Customizable prompt for any shell, the default prompt is used in this config.
 - [dust](https://github.com/bootandy/dust): A replacement for `du`.
+- [dog](https://github.com/ogham/dog): A replacement for `dig`, used for DNS queries. ⚠️ **Note**: This alias may not cover all use cases, use with caution.
 
 ## Setup
 
@@ -44,10 +46,68 @@ git reset --hard
 
 ### Installation of required tools
 
-#### Arch Linux
+You can either use the automated installation script or install tools manually for your platform.
+
+#### Automated Installation (Recommended)
 
 ```bash
-sudo pacman -S bat eza fd ripgrep zoxide fzf neovim fish git-delta yazi stow ghostty starship bat-extras
+# Run the installation script
+./install.sh
+```
+
+The script will detect your operating system and install the appropriate packages. Currently supports:
+- Arch Linux (pacman)
+- macOS (Homebrew)  
+- Ubuntu/Debian (APT, with notes for additional tools)
+
+#### Manual Installation
+
+##### Arch Linux
+
+```bash
+sudo pacman -S bat eza fd ripgrep zoxide fzf neovim fish git-delta yazi stow ghostty starship bat-extras dust
+```
+
+##### macOS (Homebrew)
+
+```bash
+brew install bat eza fd ripgrep zoxide fzf neovim fish git-delta yazi stow starship dust
+brew install eth-p/software/bat-extras
+```
+
+**Note**: Ghostty needs to be installed separately from [ghostty.org](https://ghostty.org/).
+
+##### Ubuntu/Debian (APT)
+
+Most tools can be installed via apt, but some may need to be installed from their respective GitHub releases or via alternative methods:
+
+```bash
+# Available in standard repositories
+sudo apt update
+sudo apt install bat fd-find ripgrep fzf neovim fish git-delta stow
+
+# Tools that may need alternative installation methods:
+# - eza: Install from GitHub releases or via cargo
+# - zoxide: Install from GitHub releases or via cargo  
+# - yazi: Install from GitHub releases or via cargo
+# - starship: Install from GitHub releases or via curl
+# - dust: Install from GitHub releases or via cargo
+# - ghostty: Install from ghostty.org
+# - bat-extras: Install from GitHub
+```
+
+##### AUR packages (Arch Linux)
+
+For AUR packages, you can use `paru` or `yay`:
+
+```bash
+# Install paru first if you don't have an AUR helper
+sudo pacman -S --needed base-devel
+git clone https://aur.archlinux.org/paru.git
+cd paru && makepkg -si
+
+# Then install AUR packages if needed
+paru -S ghostty-git  # if not available in official repos
 ```
 
 ## TODO
