@@ -1,0 +1,7 @@
+# Personal git configuration
+# Fill in your personal details below
+
+# [user]
+#     signingkey = <YOUR_PUBLIC_KEY>
+#     name = <YOUR_NAME>
+#     email = <YOUR_EMAIL>

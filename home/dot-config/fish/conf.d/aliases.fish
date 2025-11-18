@@ -1,4 +1,16 @@
 
+# Safety aliases - interactive prompts and verbose output
+alias rm='rm -Iv'
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias mkdir='mkdir -pv'
+alias rmdir='rmdir -v'
+alias ln='ln -v'
+
+# System management
+alias shutdown='sudo shutdown'
+alias reboot='sudo reboot'
+
 if type -q nvim
     set -gx EDITOR nvim
     alias vi nvim
@@ -36,10 +48,16 @@ end
 # Abbreviations, advantage over aliases is that they show as full command in history
 
 abbr -a g git
+abbr -a gs git status
+abbr -a ga git add
+abbr -a gp git push
+abbr -a gl git pull
+abbr -a gd git diff
 abbr -a gcm --set-cursor 'git commit -m "%"'
 abbr -a gcma --position command --set-cursor --function __aiva_commit
 abbr -a k kubectl
 abbr -a d docker
+abbr -a dc docker-compose
 abbr -a dcup 'docker-compose up -d'
 
 if type -q paru
