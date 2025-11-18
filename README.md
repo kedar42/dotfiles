@@ -59,6 +59,22 @@ The `.gitconfig` includes sensible defaults and git-delta configuration, but you
 
 This will automatically use your work credentials for any repositories inside `~/work/`.
 
+### Bat theme setup
+
+The config uses the Catppuccin Mocha theme for `bat`. Install it:
+
+```bash
+mkdir -p "$(bat --config-dir)/themes"
+```
+
+```bash
+cd "$(bat --config-dir)/themes" && wget https://raw.githubusercontent.com/catppuccin/bat/main/themes/Catppuccin%20Mocha.tmTheme
+```
+
+```bash
+bat cache --build
+```
+
 ### Installation of required tools
 
 #### Arch Linux
