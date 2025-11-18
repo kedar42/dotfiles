@@ -1,1 +1,5 @@
 *.DS_Store*
+
+# Git config with personal information
+home/dot-config/git/config.local
+home/dot-config/git/config.work
