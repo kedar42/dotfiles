@@ -1,0 +1,7 @@
+# Work git configuration
+# Fill in your work details below and uncomment
+
+# [user]
+#     name = <WORK_NAME>
+#     email = <WORK_EMAIL>
+#     signingkey = <WORK_PUBLIC_KEY>

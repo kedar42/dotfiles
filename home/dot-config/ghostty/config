@@ -1,8 +1,9 @@
-theme = catppuccin-mocha
+theme = Catppuccin Mocha
 font-family = FiraCode Nerd Font Mono
 keybind = global:ctrl+`=toggle_quick_terminal
 background-opacity = 0.85
-background-blur-radius = 20
+background-blur = true
 quick-terminal-autohide = false
 quick-terminal-position = right
-command = /opt/homebrew/bin/fish
+command = fish
+keybind = shift+enter=text:\x1b\r

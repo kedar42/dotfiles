@@ -1,0 +1,66 @@
+[core]
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true
+    dark = true
+    line-numbers = true
+    side-by-side = true
+
+[init]
+    defaultBranch = main
+
+[pull]
+    rebase = true
+
+[push]
+    autoSetupRemote = true
+
+[fetch]
+    prune = true
+    pruneTags = true
+
+[rebase]
+    autoSquash = true
+    autoStash = true
+    updateRefs = true
+
+[merge]
+    conflictStyle = zdiff3
+
+[diff]
+    algorithm = histogram
+    colorMoved = default
+
+[branch]
+    sort = -committerdate
+
+[tag]
+    sort = version:refname
+
+[rerere]
+    enabled = true
+    autoUpdate = true
+
+[help]
+    autoCorrect = prompt
+
+[commit]
+    verbose = true
+    gpgsign = true
+
+[gpg]
+    format = ssh
+
+# Include local config with personal info
+# Edit ~/.config/git/config.local with your details
+[include]
+    path = ~/.config/git/config.local
+
+# Optional: Work overrides - only applies in work directories
+# Edit ~/.config/git/config.work if needed
+[includeIf "gitdir:~/work/"]
+    path = ~/.config/git/config.work
