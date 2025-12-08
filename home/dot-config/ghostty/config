@@ -4,6 +4,5 @@ keybind = global:ctrl+`=toggle_quick_terminal
 background-opacity = 0.85
 background-blur = true
 quick-terminal-autohide = false
-quick-terminal-position = right
 command = fish
 keybind = shift+enter=text:\x1b\r

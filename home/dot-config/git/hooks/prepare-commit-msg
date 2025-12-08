@@ -1,0 +1,26 @@
+#!/bin/bash
+
+COMMIT_MSG_FILE=$1
+COMMIT_SOURCE=$2
+
+if [ "$COMMIT_SOURCE" = "merge" ] || [ "$COMMIT_SOURCE" = "squash" ]; then
+    exit 0
+fi
+
+BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null) || exit 0
+
+TAG=$(echo "$BRANCH" | grep -oE 'AIVAH?-[0-9]+' | head -n1)
+
+[ -z "$TAG" ] && exit 0
+
+CURRENT_MSG=$(cat "$COMMIT_MSG_FILE")
+
+grep -qF "$TAG" "$COMMIT_MSG_FILE" && exit 0
+
+MSG_CONTENT=$(echo "$CURRENT_MSG" | sed 's/^[[:space:]]*//')
+
+if [ -z "$MSG_CONTENT" ]; then
+    exit 0
+fi
+
+echo "$TAG: $CURRENT_MSG" > "$COMMIT_MSG_FILE"
