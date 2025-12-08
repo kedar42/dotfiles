@@ -6,6 +6,16 @@ A highly personalized set of configuration files for my linux and macOS environm
 
 As mentioned, this config relies on fish shell, but I advise against setting it as your default shell. Instead, you should set it up as a shell for your terminal emulator (ghostty in my case). Most of the tools mentioned are used to provide a better replacement for some of the default tools, overwriting them using fish aliases. Fish also provides some abbreviations for some commands I use frequently during software development, you can print them using `abbr` command in fish shell.
 
+### Custom Fish Functions
+
+This config includes several custom fish functions for improved productivity:
+
+- **gai** (git add interactive): Interactive file staging/unstaging using fzf. Select multiple files with Tab, stage/unstage with Enter. Shows live diff preview.
+- **cdm** (create directory and move): Create a directory and cd into it in one command
+- **up**: Navigate up multiple directory levels quickly
+- **extract**: Universal archive extraction function
+- **backup**: Quick file backup utility
+
 ## Used tools
 
 ### Shell and active usage tools
@@ -28,8 +38,10 @@ These tools are mostly used as replacements for some of the default tools, or di
 - [git-delta](https://github.com/dandavison/delta): A syntax-highlighting pager for git and diff output, enhances `git diff`, `git log`, and `git show` with syntax highlighting and side-by-side view.
 - [stow](https://www.gnu.org/software/stow/): A symlink farm manager, used to manage dotfiles and configuration files, used in the setup process.
 - [starship](https://starship.rs/): Customizable prompt for any shell, the default prompt is used in this config.
-- [dust](https://github.com/bootandy/dust): A replacement for `du`.
-- [fnm](https://github.com/Schniz/fnm): Fast Node.js version manager, automatically switches Node versions based on `.node-version` or `.nvmrc` files.
+- [dust](https://github.com/bootandy/dust): A replacement for `du`, shows directory and file-level disk usage in a tree structure with ASCII bars.
+- [duf](https://github.com/muesli/duf): A replacement for `df`, shows filesystem-level disk usage (mounted drives, available space) in a color-coded table format.
+- [fnm](https://github.com/Schniz/fnm): Fast and simple Node.js version manager. Automatically switches Node versions based on `.nvmrc` or `.node-version` files in project directories.
+- [doggo](https://github.com/mr-karan/doggo): A replacement for `dig`, modern DNS client with support for DoH, DoT, DoQ, and DNSCrypt protocols, with colorful output.
 
 
 
@@ -81,7 +93,7 @@ bat cache --build
 
 Update system and install core tools:
 ```bash
-sudo pacman -Syu bat bat-extras eza fd ripgrep zoxide fzf neovim fish stow ghostty starship dust fnm dog git-delta zsh
+sudo pacman -Syu bat bat-extras eza fd ripgrep zoxide fzf neovim fish stow ghostty starship dust duf fnm doggo git-delta zsh
 ```
 
 Set zsh as default shell (required for system compatibility):
@@ -103,7 +115,7 @@ brew update
 
 Install core tools:
 ```bash
-brew install bat bat-extras eza fd ripgrep zoxide fzf neovim fish stow starship dust fnm dog git-delta
+brew install bat bat-extras eza fd ripgrep zoxide fzf neovim fish stow starship dust duf fnm doggo git-delta
 ```
 
 Install Ghostty (GUI application):
@@ -112,9 +124,7 @@ brew install --cask ghostty
 ```
 
 ## TODO
-- [ ] Read on duf
-- [ ] Read on dust
-- [ ] Integrate git-delta
+- [ ] Document SSH signing/allowed_signers setup
 - [ ] Better integration with fzf
-- [ ] Look into dog
-- [ ] Look httpie
+- [ ] Look into xh (Rust-based HTTPie alternative for API testing)
+- [ ] Look into trash CLI for rm (note: BTRFS subvolume compatibility issues exist)

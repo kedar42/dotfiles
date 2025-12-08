@@ -17,6 +17,10 @@ if type -q nvim
     alias vim nvim
 end
 
+if type -q zeditor
+    alias zed zeditor
+end
+
 if type -q eza
     alias ls="eza --group-directories-first --git --icons=auto"
     alias l="eza -blF --group-directories-first --icons=auto"
@@ -45,6 +49,10 @@ if type -q dust
     alias du="dust"
 end
 
+if type -q duf
+    alias df="duf"
+end
+
 # Abbreviations, advantage over aliases is that they show as full command in history
 
 abbr -a g git
@@ -54,7 +62,6 @@ abbr -a gp git push
 abbr -a gl git pull
 abbr -a gd git diff
 abbr -a gcm --set-cursor 'git commit -m "%"'
-abbr -a gcma --position command --set-cursor --function __aiva_commit
 abbr -a k kubectl
 abbr -a d docker
 abbr -a dc docker-compose
@@ -67,6 +74,6 @@ end
 
 # WARNING: I am not sure if the following aliases cover all cases, use with caution
 
-if type -q dog
-    alias dig="dog"
+if type -q doggo
+    alias dig="doggo"
 end
