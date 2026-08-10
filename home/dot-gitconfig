@@ -8,7 +8,6 @@
     navigate = true
     dark = true
     line-numbers = true
-    side-by-side = true
 
 [init]
     defaultBranch = main
@@ -21,7 +20,6 @@
 
 [fetch]
     prune = true
-    pruneTags = true
 
 [rebase]
     autoSquash = true
@@ -45,25 +43,14 @@
     enabled = true
     autoUpdate = true
 
-[help]
-    autoCorrect = prompt
-
 [commit]
     verbose = true
-    gpgsign = true
 
-[gpg]
-    format = ssh
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
 
-# Include local config with personal info
-# Edit ~/.config/git/config.local with your details
 [include]
     path = ~/.config/git/config.local
-
-# Optional: Work overrides - only applies in work directories
-# Edit ~/.config/git/config.work if needed
-[includeIf "gitdir:~/Programming/work/"]
-    path = ~/.config/git/config.work
-
-[maintenance]
-    auto = true

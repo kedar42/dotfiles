@@ -1,20 +1,26 @@
+local lsp_servers = {
+    "lua_ls",
+    "rust_analyzer",
+    "ts_ls",
+    "pyright",
+    "gopls",
+    "bashls",
+    "jsonls",
+    "yamlls",
+}
+
 return {
     {
-        "catppuccin/nvim",
+        "rebelot/kanagawa.nvim",
         lazy = false,
         priority = 1000,
         opts = {
-            integrations = {
-                blink_cmp = true,
-                mason = true,
-                gitsigns = true,
-                telescope = true,
-                treesitter = true,
-                which_key = true,
-            },
+            theme = "wave",
+            terminalColors = true,
         },
-        config = function ()
-            vim.cmd.colorscheme "catppuccin-mocha"
+        config = function(_, opts)
+            require("kanagawa").setup(opts)
+            vim.cmd.colorscheme "kanagawa-wave"
         end
     },
     {
@@ -73,123 +79,110 @@ return {
         config = function ()
             require('lualine').setup({
                 options = {
-                    theme = "catppuccin-mocha"
+                    theme = "kanagawa"
                 }
             })
         end
     },
     {
         'nvim-treesitter/nvim-treesitter',
+        lazy = false,
         build = ":TSUpdate",
         config = function()
-            require('nvim-treesitter.configs').setup({
-                ensure_installed = {
-                    "bash",
-                    "lua",
-                    "vim",
-                    "vimdoc",
-                    "javascript",
-                    "typescript",
-                    "json",
-                    "yaml",
-                    "markdown",
-                    "python",
-                    "rust",
-                    "go",
-                    "html",
-                    "css",
-                    "toml",
-                },
-                highlight = { enable = true },
-                indent = { enable = true },
-            })
-        end
-    },
-    -- LSP Configuration
-    {
-        "williamboman/mason.nvim",
-        config = function()
-            require("mason").setup({
-                ui = {
-                    icons = {
-                        package_installed = "✓",
-                        package_pending = "➜",
-                        package_uninstalled = "✗"
-                    }
-                }
-            })
-        end
-    },
-    {
-        "williamboman/mason-lspconfig.nvim",
-        dependencies = { "williamboman/mason.nvim" },
-        config = function()
-            require("mason-lspconfig").setup({
-                -- Install these servers automatically
-                ensure_installed = {
-                    "lua_ls",           -- Lua
-                    "rust_analyzer",    -- Rust
-                    "ts_ls",            -- TypeScript/JavaScript
-                    "pyright",          -- Python
-                    "gopls",            -- Go
-                    "bashls",           -- Bash
-                    "jsonls",           -- JSON
-                    "yamlls",           -- YAML
-                },
-                automatic_installation = true,
-            })
-        end
-    },
-    {
-        "neovim/nvim-lspconfig",
-        dependencies = {
-            "williamboman/mason-lspconfig.nvim",
-            "saghen/blink.cmp",
-        },
-        config = function()
-            -- Get blink.cmp capabilities
-            local capabilities = require('blink.cmp').get_lsp_capabilities()
-
-            -- Define LSP attach callback for keymaps
-            local on_attach = function(client, bufnr)
-                -- Enable completion triggered by <c-x><c-o>
-                vim.bo[bufnr].omnifunc = 'v:lua.vim.lsp.omnifunc'
-
-                -- Keymaps are defined in core/keymaps.lua
-            end
-
-            -- Configure each LSP server using vim.lsp.config
-            local servers = {
-                lua_ls = {
-                    settings = {
-                        Lua = {
-                            diagnostics = {
-                                globals = { 'vim' }
-                            },
-                            workspace = {
-                                library = vim.api.nvim_get_runtime_file("", true),
-                                checkThirdParty = false,
-                            },
-                            telemetry = { enable = false },
-                        }
-                    }
-                },
-                rust_analyzer = {},
-                ts_ls = {},
-                pyright = {},
-                gopls = {},
-                bashls = {},
-                jsonls = {},
-                yamlls = {},
+            local parsers = {
+                "bash",
+                "css",
+                "go",
+                "html",
+                "javascript",
+                "json",
+                "lua",
+                "markdown",
+                "markdown_inline",
+                "python",
+                "rust",
+                "toml",
+                "tsx",
+                "typescript",
+                "vim",
+                "vimdoc",
+                "yaml",
+            }
+            local filetypes = {
+                "css",
+                "go",
+                "help",
+                "html",
+                "javascript",
+                "javascriptreact",
+                "json",
+                "lua",
+                "markdown",
+                "python",
+                "rust",
+                "sh",
+                "toml",
+                "typescript",
+                "typescriptreact",
+                "vim",
+                "yaml",
             }
 
-            for server_name, server_config in pairs(servers) do
-                vim.lsp.config(server_name, vim.tbl_deep_extend('force', {
-                    capabilities = capabilities,
-                    on_attach = on_attach,
-                }, server_config))
-                vim.lsp.enable(server_name)
+            require("nvim-treesitter").install(parsers)
+            vim.api.nvim_create_autocmd("FileType", {
+                pattern = filetypes,
+                callback = function()
+                    if pcall(vim.treesitter.start) then
+                        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                    end
+                end,
+            })
+        end
+    },
+    {
+        "mason-org/mason-lspconfig.nvim",
+        dependencies = {
+            {
+                "mason-org/mason.nvim",
+                opts = {
+                    ui = {
+                        icons = {
+                            package_installed = "✓",
+                            package_pending = "➜",
+                            package_uninstalled = "✗",
+                        },
+                    },
+                },
+            },
+            "neovim/nvim-lspconfig",
+            "saghen/blink.cmp",
+        },
+        opts = {
+            ensure_installed = lsp_servers,
+            automatic_enable = lsp_servers,
+        },
+        config = function(_, opts)
+            local capabilities = require("blink.cmp").get_lsp_capabilities()
+
+            for _, server in ipairs(lsp_servers) do
+                vim.lsp.config(server, { capabilities = capabilities })
             end
+
+            vim.lsp.config("lua_ls", {
+                capabilities = capabilities,
+                settings = {
+                    Lua = {
+                        diagnostics = { globals = { "vim" } },
+                        workspace = {
+                            library = vim.api.nvim_get_runtime_file("", true),
+                            checkThirdParty = false,
+                        },
+                        telemetry = { enable = false },
+                    },
+                },
+            })
+
+            require("mason-lspconfig").setup(opts)
         end
     },
     -- Completion
@@ -203,7 +196,6 @@ return {
             keymap = { preset = 'enter' },
 
             appearance = {
-                use_nvim_cmp_as_default = true,
                 nerd_font_variant = 'mono'
             },
 
@@ -267,9 +259,8 @@ return {
                 bash = { "shellcheck" },
             }
 
-            -- Auto-lint on save and insert leave
             local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
-            vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+            vim.api.nvim_create_autocmd("BufWritePost", {
                 group = lint_augroup,
                 callback = function()
                     lint.try_lint()
@@ -298,27 +289,7 @@ return {
                 },
                 float = {
                     padding = 2,
-                    max_width = 0,
-                    max_height = 0,
                     border = "rounded",
-                },
-                keymaps = {
-                    ["g?"] = "actions.show_help",
-                    ["<CR>"] = "actions.select",
-                    ["<C-s>"] = "actions.select_vsplit",
-                    ["<C-h>"] = "actions.select_split",
-                    ["<C-t>"] = "actions.select_tab",
-                    ["<C-p>"] = "actions.preview",
-                    ["<C-c>"] = "actions.close",
-                    ["<C-l>"] = "actions.refresh",
-                    ["-"] = "actions.parent",
-                    ["_"] = "actions.open_cwd",
-                    ["`"] = "actions.cd",
-                    ["~"] = "actions.tcd",
-                    ["gs"] = "actions.change_sort",
-                    ["gx"] = "actions.open_external",
-                    ["g."] = "actions.toggle_hidden",
-                    ["g\\"] = "actions.toggle_trash",
                 },
             })
         end
@@ -328,8 +299,6 @@ return {
     },
     {
         "lewis6991/gitsigns.nvim",
-        config = function()
-            require("gitsigns").setup()
-        end
+        opts = {},
     }
 }

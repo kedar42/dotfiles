@@ -1,8 +1,8 @@
-theme = Catppuccin Mocha
+theme = Kanagawa Wave
 font-family = FiraCode Nerd Font Mono
-keybind = global:ctrl+`=toggle_quick_terminal
 background-opacity = 0.85
 background-blur = true
 quick-terminal-autohide = false
-command = fish
+command = /opt/homebrew/bin/fish
+keybind = global:ctrl+`=toggle_quick_terminal
 keybind = shift+enter=text:\x1b\r

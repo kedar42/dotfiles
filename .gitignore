@@ -1,5 +1,7 @@
-*.DS_Store*
+**/.DS_Store
+home/dot-config/fish/fish_variables
+home/dot-config/local/
 
-# Git config with personal information
+# Local Git identity must never be committed.
 home/dot-config/git/config.local
 home/dot-config/git/config.work

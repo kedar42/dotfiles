@@ -32,8 +32,6 @@ vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.pumheight = 10       -- Max items in completion menu
 
 -- File settings
-vim.opt.backup = false       -- Don't create backup files
-vim.opt.swapfile = false     -- Don't create swap files
 vim.opt.undofile = true      -- Enable persistent undo
 vim.opt.updatetime = 250     -- Faster completion and diagnostics
 

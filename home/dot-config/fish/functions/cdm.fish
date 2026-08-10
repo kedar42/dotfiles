@@ -3,5 +3,5 @@ function cdm --description 'Create a directory and change to it'
         echo "Usage: cdm <directory_name>"
         return 1
     end
-  mkdir -p $argv[1]; and cd $argv[1]
+    command mkdir -p -- $argv[1]; and cd -- $argv[1]
 end

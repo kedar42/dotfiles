@@ -64,8 +64,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
         -- Diagnostics
         buf_map("n", "gl", vim.diagnostic.open_float, "Show line diagnostics")
-        buf_map("n", "[d", vim.diagnostic.goto_prev, "Previous diagnostic")
-        buf_map("n", "]d", vim.diagnostic.goto_next, "Next diagnostic")
+        buf_map("n", "[d", function()
+            vim.diagnostic.jump({ count = -1 })
+        end, "Previous diagnostic")
+        buf_map("n", "]d", function()
+            vim.diagnostic.jump({ count = 1 })
+        end, "Next diagnostic")
 
         -- Actions
         buf_map("n", "<leader>rn", vim.lsp.buf.rename, "Rename symbol")
@@ -85,14 +89,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
         end, "Workspace symbols")
 
         -- Formatting
-        if client and client.supports_method("textDocument/formatting") then
+        if client and client:supports_method("textDocument/formatting", bufnr) then
             buf_map("n", "<leader>fm", function()
                 vim.lsp.buf.format({ async = true })
             end, "Format document")
         end
 
         -- Inlay hints (if supported)
-        if client and client.supports_method("textDocument/inlayHint") then
+        if client and client:supports_method("textDocument/inlayHint", bufnr) then
             buf_map("n", "<leader>th", function()
                 vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
             end, "Toggle inlay hints")
@@ -106,7 +110,14 @@ vim.diagnostic.config({
         prefix = '●',
         spacing = 4,
     },
-    signs = true,
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = " ",
+            [vim.diagnostic.severity.WARN] = " ",
+            [vim.diagnostic.severity.INFO] = " ",
+            [vim.diagnostic.severity.HINT] = "󰠠 ",
+        },
+    },
     underline = true,
     update_in_insert = false,
     severity_sort = true,
@@ -117,10 +128,3 @@ vim.diagnostic.config({
         prefix = '',
     },
 })
-
--- Diagnostic signs
-local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-end

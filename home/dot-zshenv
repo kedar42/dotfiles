@@ -1,0 +1,12 @@
+_local_env_dir="$HOME/.config/local/env.d"
+if [[ -d "$_local_env_dir" ]]; then
+    for _env_file in "$_local_env_dir"/*(N); do
+        [[ -f "$_env_file" && ! -L "$_env_file" ]] || continue
+
+        _env_name="${_env_file:t}"
+        if [[ "$_env_name" == [A-Za-z_]* && "$_env_name" != *[^A-Za-z0-9_]* ]]; then
+            export "$_env_name=$(<"$_env_file")"
+        fi
+    done
+fi
+unset _local_env_dir _env_file _env_name
