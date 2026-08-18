@@ -56,6 +56,7 @@ Present that proposed fleet in a sentence or two ("small local change → one im
 - Freely **drop** a stage/agent that doesn't apply and **add** one that does — the point is the minimal fleet that fits, not the full one.
 
 ## Invariants (never drop these, whatever the shape)
+- **Decompose before dispatch; parallelize independent slices.** An agent at any level does the work or breaks it into real sub-slices before fanning out — it never immediately re-delegates its whole assignment to a single child. Independent slices dispatch as one **concurrent wave** (sent together), not serialized one-at-a-time; go serial only on a genuine dependency. Nested fan-out is fine when a sub-slice earns it; indirection without decomposition is not.
 - Every slice is **scope-fenced** with an explicit "other agents own X — do not touch it", plus a cross-cutting sweep for what the split misses.
 - **Human gate between phases** — I inspect and advance; the fleet never self-chains.
 - **Adversarial-verify before trusting** any non-trivial batch of findings (default REFUTED without proof).
