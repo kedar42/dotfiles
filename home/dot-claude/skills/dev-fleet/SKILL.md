@@ -32,6 +32,7 @@ Present that proposed fleet in a sentence or two ("small local change → one im
 - plan / design (write or read a plan doc)
 - implement wave (`scoped-implementer`)
 - apply fixes (`scoped-implementer`; bundle ~2 related findings per agent) → confirm each landed (`fix-verifier`)
+- contextual safety check (`lens-reviewer`, sonnet) — see below; NOT a full review
 - adversarial verify (`adversarial-verifier`, opus)
 - re-review (`lens-reviewer`; re-run the lens split; only new issues / regressions)
 - comment-density audit (`comment-auditor`)
@@ -44,6 +45,8 @@ Present that proposed fleet in a sentence or two ("small local change → one im
 `scoped-implementer` · `lens-reviewer` · `adversarial-verifier` · `fix-verifier` · `comment-auditor` · `investigator`.
 
 **Verify vs investigate:** `adversarial-verifier` renders a verdict on a *specific claim* (CONFIRMED/PLAUSIBLE/REFUTED). Route a surviving **PLAUSIBLE** (or any finding whose fix is unobvious) to `investigator`, which decides worth-fixing and returns a safe minimal plan or "don't bother". `fix-verifier` runs *after* a fix to confirm it landed. Don't run all three on everything — verify to triage, investigate only the uncertain, fix-verify only what you changed.
+
+**Contextual safety check — NOT a full review.** After implementing, look at the diff's touched paths and run ONLY the `safety`-tier lenses from `lens-reviewer`'s catalog whose trigger fired: `layer-boundary` (a data/persistence layer, repository, controller, or frontend file changed) and `db-change-validation` (a migration/schema/model changed). If none fired, skip it entirely. This is a targeted architectural/data gate to catch expensive-to-unwind mistakes early — deliberately NOT the full lens sweep. The full sweep (all lenses, both tiers) is `/review`, run separately when you actually want a PR review.
 
 ## How to size (guidance, not rules)
 - **Small / local / low-risk** → implement (1–2) + one adversarial-verify; skip re-review, audit, sweep.
