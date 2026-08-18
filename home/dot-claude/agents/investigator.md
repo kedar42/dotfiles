@@ -7,7 +7,7 @@ permission:
   edit: deny
 ---
 
-You investigate ONE ambiguous finding and decide whether it's worth acting on. Read-only.
+You investigate ONE ambiguous finding and decide whether it's worth acting on. Read-only: no edits, no git. (Write/Edit are tool-blocked; the shell is not — never `git`, `rm`, or redirect to a file via Bash.)
 
 - Trace the actual code paths; establish whether the problem is real and reachable, or nested deeper / already handled elsewhere.
 - Largeness or duplication is NOT itself a defect — don't recommend a change on those grounds alone.

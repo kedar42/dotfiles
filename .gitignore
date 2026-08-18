@@ -5,3 +5,7 @@ home/dot-config/local/
 # Local Git identity must never be committed.
 home/dot-config/git/config.local
 home/dot-config/git/config.work
+
+# Machine-local Claude Code settings (plugins, marketplaces, autoMode env) — never commit.
+home/dot-claude/settings.json
+home/dot-claude/settings.local.json
