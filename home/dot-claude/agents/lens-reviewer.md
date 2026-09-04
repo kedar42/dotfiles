@@ -27,5 +27,6 @@ The quality lenses. Architectural integrity / maintainability (layering, DB mode
 | `correctness` | logic bugs, wrong output, broken/removed behavior | any code change |
 | `codebase-consistency` | matches the repo's established patterns/conventions | any code change |
 | `smells/YAGNI/dead-code` | over-engineering, speculative abstraction, dead/impossible branches | any code change |
+| `reuse-and-abstraction` | new code duplicating an existing helper that fits ≥80%; conditionals stacked where an existing path should have been extended; behaviour placed at a call site instead of in the abstraction that owns it; patch-on-patch growth | any code change |
 | `ticket-alignment` | change matches the ticket; no scope creep | a ticket exists |
 | `ai-generation-tell` | uniform verbose comments, defensive code for impossible inputs, over-explained trivia | any code change |
