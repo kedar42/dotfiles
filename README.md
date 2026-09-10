@@ -14,6 +14,8 @@ state and aliases that pretend incompatible commands are drop-in replacements.
 - Ghostty appearance and quick-terminal bindings
 - Git Delta, LFS, rebase, rerere, and diff defaults
 - Neovim editing, navigation, LSP, completion, formatting, and linting setup
+- Claude Code and Codex working agreements, custom agents, and the dev-fleet /
+  review skills (same house style in both tools)
 
 ## Install
 
@@ -51,6 +53,21 @@ Kanagawa Wave is configured consistently for Ghostty, Fish, Neovim, Zed, and
 Claude Code. Only Claude's appearance settings, custom theme, and statusline
 script are tracked; authentication, histories, project state, and caches remain
 local.
+
+## Codex
+
+`home/dot-codex` links `~/.codex/AGENTS.md` (global working agreements) and
+`~/.codex/agents/*.toml` (custom subagents); `home/dot-agents/skills` links the
+`dev-fleet` and `review` skills into `~/.agents/skills`. `~/.codex/config.toml`
+is app-managed and not tracked; add this block so spawned agents default to the
+workhorse model and a wave stays capped:
+
+```toml
+[agents]
+max_concurrent_threads_per_session = 5
+default_subagent_model = "gpt-5.6-terra"
+default_subagent_reasoning_effort = "medium"
+```
 
 ## Local Git Identity
 
