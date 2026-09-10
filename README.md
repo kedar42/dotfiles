@@ -16,6 +16,7 @@ state and aliases that pretend incompatible commands are drop-in replacements.
 - Neovim editing, navigation, LSP, completion, formatting, and linting setup
 - Claude Code and Codex working agreements, custom agents, and the dev-fleet /
   review skills (same house style in both tools)
+- Claude prose style rules (`STYLE.md`, imported by `CLAUDE.md`)
 
 ## Install
 
@@ -53,6 +54,17 @@ Kanagawa Wave is configured consistently for Ghostty, Fish, Neovim, Zed, and
 Claude Code. Only Claude's appearance settings, custom theme, and statusline
 script are tracked; authentication, histories, project state, and caches remain
 local.
+
+## Claude Style
+
+`home/dot-claude/STYLE.md` is a verbatim copy of
+[claude-style-patch](https://github.com/andrewroxby/claude-style-patch) (CC0),
+imported from `CLAUDE.md` with `@STYLE.md`. Refresh it with:
+
+```sh
+curl -sL https://raw.githubusercontent.com/andrewroxby/claude-style-patch/main/STYLE.md \
+  -o home/dot-claude/STYLE.md
+```
 
 ## Codex
 

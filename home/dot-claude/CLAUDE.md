@@ -18,3 +18,7 @@ Follow the repo's own CLAUDE.md / AGENTS.md and match a nearby sibling file firs
 - **Delete dead code and impossible branches.** Prefer making a bad state unrepresentable over guarding one that can't occur.
 - **No speculative abstraction (YAGNI).** Don't generalize for a caller that doesn't exist.
 - **Use the newest non-deprecated API.** Read the SDK docs; migrate off `@deprecated` rather than copying deprecated sibling usage.
+
+# Response style
+
+@STYLE.md
