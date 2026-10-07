@@ -4,7 +4,7 @@
 
 **The shell tool runs zsh on my Mac.** Any command with a loop, `$var` word-splitting, or a glob that may not match goes inside `bash <<'EOF' … EOF`. `timeout` does not exist here. After a destructive loop, count what it did before reporting success.
 
-**Never commit or push unless I say so in that request.** Leave edits in the working tree and report them.
+Preserve existing working-tree changes and follow each repository's Git and deployment workflow.
 
 # Coding conventions (apply in every repo)
 
